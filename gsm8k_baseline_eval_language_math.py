@@ -37,7 +37,7 @@ def main():
     MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
     DATASET_ID = "Onlydrinkwater/language_math_multiplication_10base"
     DATASET_CONFIG = "main"
-    OUTPUT_CSV = "/home/ubuntu/number-token/results/gsm8k_base_model_math_language_results.csv"
+    OUTPUT_CSV = "/home/ubuntu/FoNE-for-LLMs/results/gsm8k_base_model_math_language_results.csv"
 
     # Load the model and tokenizer
     model = AutoModelForCausalLM.from_pretrained(
