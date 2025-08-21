@@ -2,9 +2,10 @@ import torch
 import re
 import pandas as pd
 from tqdm import tqdm
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, logging
 from datasets import load_dataset
 import time
+logging.set_verbosity_error()
 
 def extract_final_answer(model_output: str) -> float | None:
     """
@@ -36,7 +37,6 @@ def main():
 
     MODEL_ID = "Qwen/Qwen2.5-7B-Instruct"
     DATASET_ID = "Onlydrinkwater/language_math_multiplication_10base"
-    DATASET_CONFIG = "main"
     OUTPUT_CSV = "/home/ubuntu/FoNE-for-LLMs/results/gsm8k_base_model_math_language_results.csv"
 
     # Load the model and tokenizer
@@ -51,7 +51,7 @@ def main():
     # Number of tests to be evaluated, set to None for full test set evaluation
     NUM_SAMPLES = None
     print(f"Loading dataset: {DATASET_ID}")
-    dataset = load_dataset(DATASET_ID, DATASET_CONFIG)
+    dataset = load_dataset(DATASET_ID)
     if NUM_SAMPLES:
         test_set = dataset['test'].select(range(NUM_SAMPLES))
     else:
